@@ -1,0 +1,236 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+.navbar .navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.navbar .menu {
+  display: flex;
+  gap: 1rem;
+}
+.navbar .menu a {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.navbar .menu a:hover {
+  background-color: #f2f2f2;
+}
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 160px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar .menu .dropdown {
+  margin-left: auto;
+}
+@media screen and (max-width: 640px) {
+  .navbar .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navbar .menu {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar .menu a {
+    padding: 0.75rem 1rem;
+  }
+  .navbar .menu .dropdown {
+    margin: 0;
+  }
+}
+.content {
+  display: none;
+}
+
+.section:hover .content {
+  display: block;
+}
+
+body{
+    background: url(assets/bg.jpg);
+    background-repeat: no-repeat;
+  background-position: center;
+  backface-visibility: hidden;
+  background-attachment: fixed;
+
+  background-size: 100% 100%;
+  font-family: cursive;
+}
+.ct1,.ct2,.ct3,.ct4,.ct5,.ct6{
+    padding-left: 5%;
+    border-style: none;
+    border-color: beige;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 7px 7px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    display: inline-flex;
+    max-width: 70%;
+    margin-top: 15px;
+    transition: box-shadow 0.3s ease;
+    transition: opacity 0.3s ease;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+.title{
+    font-family: cursive;
+color: white;
+font-weight: 200;
+text-decoration: underline;
+}
+#title{
+    text-align: center;
+  }
+  .ct1,.ct3,.ct5{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .ct2,.ct4,.ct6{
+    margin-left: 25%;
+    margin-right: 5%;
+  }
+  #hidd{
+    display: none;
+  width: 100%; 
+  height: 300px;
+  }
+  p{
+    text-align: justify;
+  }
+.ct1:hover{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/nizamcult.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+.ct2:hover{
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/lang.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+.ct3:hover{
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/festival.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+.ct4:hover{
+    color: rgb(215, 157, 226);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/artsandcrafts.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+.ct5:hover{
+    color: red;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/dance.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+.ct6:hover{
+    color: yellowgreen;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    background-image: url(assets/lifestyle.jpg);
+    opacity: 0.7;
+    background-size: cover; /* Scale the image to cover the entire div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    font-weight: bolder;
+}
+#mai{
+    font-size: x-large;
+    color: white;
+    max-width: 50%;
+    margin-left: 25%;
+    margin-right: 5%;
+}
+footer {
+  padding: 20px;
+  text-align: center;
+}
