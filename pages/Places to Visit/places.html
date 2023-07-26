@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Places to Visit</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+.navbar .navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.navbar .menu {
+  display: flex;
+  gap: 1rem;
+}
+.navbar .menu a {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.navbar .menu a:hover {
+  background-color: #f2f2f2;
+}
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 160px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar .menu .dropdown {
+  margin-left: auto;
+}
+@media screen and (max-width: 640px) {
+  .navbar .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navbar .menu {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar .menu a {
+    padding: 0.75rem 1rem;
+  }
+  .navbar .menu .dropdown {
+    margin: 0;
+  }
+}
+.content {
+  display: none;
+}
+
+.section:hover .content {
+  display: block;
+}
+
+      body {
+        background-image: url("pics/bg.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .expanded-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 90%;
+        animation: fadeInExpand 0.3s ease-in-out;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .blurred-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInExpand {
+        from {
+          transform: translate(-50%, -50%) scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .custom-shadow {
+        --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      footer {
+    padding: 20px;
+    text-align: center;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-content">
+        <div class="logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprgBlD9lER_3pVbqxQSOa_SnZGVBgeq9Nr6sI37AaFFLA8uNuIlZ2PxIuC6JA1buuLf0&usqp=CAU" alt="Charminar">
+          <span class="text-2xl whitespace-nowrap dark:text-white" style="font-family: 'Times New Roman', Times, serif;font-style: italic; font-weight: 700; font: size 42px;">Hyderabad</span>
+        </div>
+        <div class="menu">
+          <a href="../../index.html">Home</a>
+          <div class="dropdown">
+            <a href="#">Explore</a>
+            <div class="dropdown-menu">
+              <a href="#">Explore Places</a>
+              <a href="#">Food Delights</a>
+              <a href="#">Accommodation</a>
+              <a href="#">Ideal Seasons</a>
+              <a href="#">Local Events</a>
+            </div>
+          </div>
+          <a href="../blog/blog.html">Blog</a>
+          <div class="dropdown">
+            <a href="#">About</a>
+            <div class="dropdown-menu">
+              <a href="#">History</a>
+              <a href="#">Culture</a>
+              <a href="#">Traditions</a>
+            </div>
+          </div>
+          
+          <a href="#">Gallery</a>
+          
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+    <h1 class="text-5xl mb-4 text-center pt-10 text-white">Places to Visit</h1>
+    <div class="container mx-auto p-16">
+      <!-- ********************************ROW-1***************************************** -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Place Card 1 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Jagannath Temple</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/jaga.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Shri Jagannath Temple, Banjara Hills, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place11-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Shree+Jagannath+Temple/@17.4145488,78.4237874,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb96d70ff8b6f3:0xde370030b7d7d2fe!8m2!3d17.4145488!4d78.4263623!16s%2Fg%2F120yr7qz?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place11-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Jagannath Temple</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/jaga.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/jaga2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/jaga3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Located in Banjara Hills, this awe-inspiring temple is a fairly
+              modern construction built in 2009. Known to attract thousands of
+              visitors during the Ratha Yatra, this temple can swoop you in its
+              charm on those festive evenings. Adjacent to the main shrine are
+              the temples of Lord Shiva and Hanuman. Go here for a pleasant
+              evening, gawk at the visual art of Ramayana on the wall and be
+              sure to walk out with a packet of prasad (a crispy savoury with a
+              sweet flavour) that’s priced at INR 50.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Timings: 6 am - 12 pm, 5 pm - 10 pm
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 2 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Birla Mandir</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/birla.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Birla Mandir, Khairatabad, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place12-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/search/birla+mandir+hyderabad/@17.3956438,78.4690664,15z/data=!3m1!4b1?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place12-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Birla Mandir</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/birla1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/birla2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/birla3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Located in Khairatabad, Birla Mandir is built on a 280-feet high
+              hill, making it visible from many areas of Hyderabad. It is said
+              that the architecture of the temple is a fine blend of Dravidian,
+              Rajasthani, and Utkala style and took almost 10 years to complete
+              the construction. Apart from the main shrine – Lord Venkateshwara
+              – it also has shrines for Lord Shiva, Sai Baba, Hanuman, Lakshmi
+              Devi etc. Do note that mobile phones or cameras aren’t allowed
+              into the temple.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Timings: 7 am - 12 pm, 3 pm - 9 pm
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 3 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Peddamma Temple</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/pedhama.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Peddamma Talli Temple, Jubilee Hills, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place13-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/search/Peddamma+Talli+Temple,+Road+55,+CBI+Colony,+Jubilee+Hills,+Hyderabad/@17.4306162,78.4054799,17z/data=!3m1!4b1?entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place13-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Peddamma Temple</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/pedhama1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/pedhama2.jpg" alt="Icon" class="w-45 h-40 m-2" />
+              <img src="pics/pedhama.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Located on the main road of Jubilee Hills, this 150-year-old
+              temple attracts devotees every day. It is known for its Bonalu and
+              Bathukamma celebrations which are celebrated with a lot of
+              festivities and fanfare when the whole temple is beautifully
+              decorated and lit up.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Timings: 7 am - 12 pm, 3 pm - 9 pm
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+
+      <!-- ********************************ROW-2***************************************** -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Place Card 1 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Golconda Fort</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/gol.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Golconda Fort, Khair Complex, Ibrahim Bagh, Hyderabad, Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place21-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Golconda+Fort,+Hyderabad,+Telangana/@17.3833938,78.3911467,15z/data=!3m1!4b1!4m6!3m5!1s0x3bcb968c5f1342f3:0xd752a9bdbdde84df!8m2!3d17.3847636!4d78.4033392!16s%2Fg%2F1261vt52r?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place21-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Golconda Fort</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/gol1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/gol2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/gol3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              The fort that was completed in the 17th century was the stronghold
+              of the legendary Qutub Shahi Empire. One of the best examples of
+              the acoustic systems of the age, this Hyderabad monument still
+              does not fail to surprise the tourists with its extraordinary
+              architecture and style. Quite the heart of the city’s mercantile
+              activities, the place has forever been known to be a place of
+              trading for the diamond merchants and other traders of gemstones.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Entry Fee: Rs.5 for Indians; Rs. 100 for foreign tourists.
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 2 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Charminar</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/char.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Charminar, Char Kaman, Ghansi Bazaar, Hyderabad, Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place22-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/search/charminar/@17.3609535,78.4717478,18z/data=!3m1!4b1?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place22-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Charminar</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/char1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/char2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/char3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              One of the most popular historical monuments in Hyderabad, the
+              Charminar was built by Mohammed Quli Qutub Shah in the year 1951.
+              Made of granite and lime mortar, the structure depicts the indo-
+              Arabian architecture. It is this monument which has come to
+              symbolize the city of Hyderabad. The monument consists of four
+              minarets which stand tall as the examples of the regal antiquity
+              that the place possesses. Now surrounded by shops all around, the
+              Charminar is a famous tourist spot in the city too.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Entry Fee: Rs.5 for Indians; Rs. 100 for foreign tourists.
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 3 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Falaknuma Palace</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/fal.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Falaknuma Palace, Engine Bowli, Fatima Nagar, Falaknuma, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place23-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Falaknuma+Palace,+Fatima+Nagar,+Falaknuma,+Hyderabad,+Telangana+500053/@17.3309549,78.4626331,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcbbd5658448db3:0xa4b0570b55c170bb!8m2!3d17.330955!4d78.467504!16s%2Fg%2F1q67pzt86?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place23-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Falaknuma Palace</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/fal1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/fal2.jpg" alt="Icon" class="w-45 h-40 m-2" />
+              <img src="pics/fal3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Another gift of the Paigah family to the grand layout the city of
+              Hyderabad, the Falaknuma Palace was built in 1893. This
+              distinguished place was built in the shape of the scorpion with
+              two stings spread out on either side that look quite like wings
+              facing the north. An ideal blend of the Italian and Tudor
+              architecture, this palace is among the rare architectural styles
+              even today. Though built by the Paigah’s this palace was later
+              gifted to the Nizams and now serves to be one of the most
+              expensive hotels in India.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Entry Fee: Nizam Palaces Tour Weekend Half-a-day tour (only
+              Saturday’s and Sunday’s) Tour Option A: Rs.3,100/ Adult and
+              Rs.2480/ Child. (Inclusions: Entry Tickets, Tea & Snacks, A/c
+              Transport, Tour Guide).
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+
+      <!-- ********************************ROW-3***************************************** -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Place Card 1 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Wonderla</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/won.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Wonderla, KOuter Ring Road, Exit No 13 Ravirala, Hyderabad,
+            Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place31-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Wonderla+Partner+Cyber+Holidays/@17.2151354,78.5141084,15z/data=!4m10!1m2!2m1!1swonderla!3m6!1s0x3bcba59a6b1993df:0x5d6d2d8d17fcea78!8m2!3d17.2151359!4d78.5273885!15sCgh3b25kZXJsYSIDiAEBkgEOYW11c2VtZW50X3BhcmvgAQA!16s%2Fg%2F11rd106kpr?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place31-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Wonderla</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/won1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/won2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/won3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              If family fun is on your mind, there can be no better option than
+              Wonderla Amusement Park. One of the most popular family
+              destinations in the city, Wonderla is thrill and fun redefined!
+              The amusement park has a plethora of land rides and water slides
+              on offer to keep you thoroughly engaged for an entire day. The
+              Wave Pool and the Rain Dance sections are among the most popular
+              attractions of the park. The best part is that the park has a
+              number of kids rides specially designed to keep the young brigade
+              happy.
+            </p>
+            <p class="text-gray-700 font-bold">
+              Entry Fee:<br />
+              - Adults – ₹1016 (Weekdays); ₹1185 (Weekends/Holidays)<br />
+              - Children – ₹812 (Weekdays); ₹948 (Weekends/Holidays)
+              <br />
+              - Senior Citizen – ₹762 (Weekdays); ₹889 (Weekends/Holidays)
+              <br />
+              - Free entry for children below 85 cm in height
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 2 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Ramoji Film City</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/ram.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Ramoji Film City, Anaspur Village, Hayathnagar Mandal, Hyderabad,
+            Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place32-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/search/ramoji+film+city/@17.2151184,78.4420063,12z/data=!3m1!4b1?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place32-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Ramoji Film City</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/ram1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/ram2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/ram3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              For sure, Ramoji Film City is one of the most attractive family
+              destinations in Hyderabad. A one-of-its-kind attraction, it holds
+              the distinction of being the largest studio complex in the world.
+              The film city has been featured in a number of Indian movies. Even
+              the blockbuster movie Bahubali was extensively filmed here. You
+              can explore a number of artificial and natural attractions inside
+              this studio complex which also boasts of an amusement park, two
+              hotels, multi-cuisine restaurants, and various permanent sets.
+              Sprawling over 2000 acres, it is truly a dream destination for
+              everyone, regardless of age, making it among the must-visiting
+              places in Hyderabad.
+            </p>
+            <p class="text-gray-700 font-bold">
+              - Timings: 09:00 am to 05:30 pm; every day <br />
+              - Things to do: Guided tour of the film sets, Thrill Rides, Live
+              shows, Bird Park <br />
+              - Entry Fee: Packages differ. Check their website for details.
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 3 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Hussain Sagar</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/hus.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Hussain Sagar, Necklace Roadc, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place33-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Hussain+Sagar/@17.4241017,78.4355476,14z/data=!3m1!4b1!4m6!3m5!1s0x3bcb97558c2e9b6b:0x25705363cc844e9d!8m2!3d17.4238798!4d78.4738215!16zL20vMDNzX3Js?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place33-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Hussain Sagar</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/hus1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/hus2.jpg" alt="Icon" class="w-45 h-40 m-2" />
+              <img src="pics/hus3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Considered to be one of the most romantic spots in the city,
+              Hussain Sagar is a majestic man-made lake designed in the shape of
+              a necklace. The lake offers stunning views of the huge Buddha
+              statue that stands in the middle of the water body. It is an ideal
+              destination to spend some lovely moments with your beloved. To
+              flame your romance further, you can hire a trip on a ferry or a
+              boat and begin exploring the magical views of the surroundings.
+            </p>
+            <p class="text-gray-700 font-bold">
+              - Things to do: Enjoy a boat ride, Lumbini Park, Visit the statue
+              of Buddha<br />
+              - Timings: 8:00 AM – 10:00 PM
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <!-- ********************************ROW-4***************************************** -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Place Card 1 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Durgam Cheruvu</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/dur.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Durgam Cheruvu,CBI Colony, Jubilee Hills, Hyderabad, Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place41-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Durgam+Cheruvu/@17.4310334,78.3849501,16z/data=!3m1!4b1!4m6!3m5!1s0x3bcb91512c9754f9:0x1cefe89d26c3fb9e!8m2!3d17.4300414!4d78.3894594!16s%2Fm%2F0dgsv02?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place41-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Durgam Cheruvu</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/dur1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/dur2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/dur3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              Spending time together can mean different things to different
+              people. If your idea of the same is to sit at a peaceful location
+              and talk to your beloved while looking deep into his/her eyes,
+              Durgam Cheruvu is the perfect destination for you. The beautiful
+              freshwater lake flaunts a well-manicured landscape and is simply
+              perfect for a picnic date. You can also indulge in boating with
+              your partner at this location.
+            </p>
+            <p class="text-gray-700 font-bold">
+              - Entry Fee: Free<br />
+              - Timings: 10:00 am to 6:30 pm<br />
+              - Things to do: Boating, Kayaking, Photography, Picnic
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 2 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Treasure Islandy</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/tre.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Treasure Island, Next to Golconda Resort, Gandipet, Hyderabad,
+            Telangana
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place42-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Treasure+Island,+Gandipet/@17.3905172,78.3120838,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb950894ce3cc9:0xdbb31c9e3a1e102e!8m2!3d17.3905172!4d78.3146587!16s%2Fg%2F11s0jj3q6y?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place42-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Treasure Island</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/tre1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/tre2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/tre3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              If you love going out for picnics with your friends, why not head
+              out to Treasure Island? True to its name, the place is an island
+              full of treasures as far as fun is concerned. You can engage in a
+              number of activities with your buddies, such as go-karting, camel
+              rides, and water slides and some indoor games as well. To keep you
+              high in the spirits, the place has good options for refreshments.
+              Play, refill your engine, and go back to all the fun and
+              frolicking!
+            </p>
+            <p class="text-gray-700 font-bold">
+              - Timings: 10:30 am to 08:00 am; every day <br />
+              - Things to do: Go-karting, Camel Rides, Water Slides, Games
+              <br />
+              - Entry Fee: ₹600 per person
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+
+        <!-- Place Card 3 -->
+        <div
+          class="bg-white p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform"
+        >
+          <h2 class="text-xl font-bold mb-2">Birla Planetarium</h2>
+          <p class="text-gray-600 mb-4">
+            <img src="pics/pla.jpg" alt="Icon" class="w-20 h-20 m-2" />
+            Birla Planetarium, Near Birla Temple, Ambedkar Colony, Hyderabad
+          </p>
+          <div class="flex flex-wrap">
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="toggleDetails('place43-details')"
+            >
+              Show Details
+            </button>
+            <a
+              href="https://www.google.com/maps/place/Birla+Planetarium/@17.4032767,78.4681106,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb9760a5f30e59:0x1adddb850fe84efa!8m2!3d17.4032767!4d78.4706855!16s%2Fg%2F11gdtqkwxl?hl=en&entry=ttu"
+            >
+              <img src="pics/map.jpg" alt="Dmap" class="w-10 h-10 ml-10" />
+            </a>
+          </div>
+          <div id="place43-details" class="hidden mt-4">
+            <h2 class="text-xl font-bold mb-2">Birla Planetarium</h2>
+            <div class="flex flex-wrap">
+              <img src="pics/pla1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+              <img src="pics/pla2.jpg" alt="Icon" class="w-45 h-40 m-2" />
+              <img src="pics/pla3.jpg" alt="Icon" class="w-40 h-40 m-2" />
+            </div>
+            <p class="text-gray-700">
+              The dome-shaped Birla Planetarium is yet another striking
+              Hyderabad tourist places located on Naubat Pahad, right in the
+              heart of the city. Inaugurated by former Andhra Pradesh chief
+              minister N.T. Rama Rao in 1985, this modern planetarium seeks to
+              impart knowledge about heavenly bodies and outer space as well as
+              recent fascinating discoveries. The planetarium is divided into
+              sections that feature exhibits such as archaeological finds, an
+              Antarctica diorama (a 3-D model of the continent), Interactive
+              Science, and many more. One of the most attractive features of
+              this planetarium is the daily Sky Show, which sheds light on
+              comets, meteors, eclipses, and the cosmos as a whole.
+            </p>
+            <p class="text-gray-700 font-bold">
+              - TEntry Fee: ₹120 per person<br />
+              - Timings: 10:00 am 5:45 pm
+            </p>
+            <br />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onclick="backToHome()"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleDetails(detailsId) {
+        const detailsElement = document.getElementById(detailsId);
+        const expandedContainer = document.createElement("div");
+        expandedContainer.classList.add("expanded-container");
+
+        const blurredBackground = document.createElement("div");
+        blurredBackground.classList.add("blurred-background");
+
+        const backToHome = () => {
+          window.location.replace(window.location.href.split("#")[0]);
+        };
+
+        const closeExpandedContainer = () => {
+          expandedContainer.classList.add("animate__fadeOut");
+          blurredBackground.classList.add("animate__fadeOut");
+          setTimeout(() => {
+            expandedContainer.remove();
+            blurredBackground.remove();
+          }, 300);
+        };
+
+        expandedContainer.addEventListener("click", closeExpandedContainer);
+        expandedContainer.innerHTML = detailsElement.innerHTML;
+
+        document.body.appendChild(blurredBackground);
+        document.body.appendChild(expandedContainer);
+      }
+    </script>
+     <footer class="bg-blue-400 p-4 text-white text-center">
+      &copy; 2023 Hyderabad Landing Page. <br>Team Web Wizard All rights reserved.
+    </footer>
+  </body>
+</html>
