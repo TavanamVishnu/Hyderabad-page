@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food in Hyderabad</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+.navbar .navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.navbar .menu {
+  display: flex;
+  gap: 1rem;
+}
+.navbar .menu a {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.navbar .menu a:hover {
+  background-color: #f2f2f2;
+}
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 160px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar .menu .dropdown {
+  margin-left: auto;
+}
+@media screen and (max-width: 640px) {
+  .navbar .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navbar .menu {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar .menu a {
+    padding: 0.75rem 1rem;
+  }
+  .navbar .menu .dropdown {
+    margin: 0;
+  }
+}
+        body {
+            background-image: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .expanded-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            animation: fadeInExpand 0.3s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInExpand {
+            from {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .custom-shadow {
+            --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+        footer {
+    padding: 20px;
+    text-align: center;
+  }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+          <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprgBlD9lER_3pVbqxQSOa_SnZGVBgeq9Nr6sI37AaFFLA8uNuIlZ2PxIuC6JA1buuLf0&usqp=CAU" alt="Charminar">
+            <span class="text-2xl whitespace-nowrap dark:text-white" style="font-family: 'Times New Roman', Times, serif;font-style: italic; font-weight: 700; font: size 42px;">Hyderabad</span>
+          </div>
+          <div class="menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+              <a href="#">Explore</a>
+              <div class="dropdown-menu">
+                <a href="pages/Places to Visit/places.html">Explore Places</a>
+                <a href="#">Food Delights</a>
+                <a href="pages/Hyderabad Hotels.html">Accommodation</a>
+                <a href="#">Ideal Seasons</a>
+                <a href="pages/events.html">Local Events</a>
+              </div>
+            </div>
+            <a href="pages/blog/blog.html">Blog</a>
+            <div class="dropdown">
+              <a href="#">About</a>
+              <div class="dropdown-menu">
+                <a href="pages/about/history.html">History</a>
+                <a href="pages/about/culture.html">Culture</a>
+              </div>
+            </div>
+            
+            <a href="pages/about/gallery.html">Gallery</a>
+            
+          </div>
+        </div>
+      </div>
+      <br><br><br>
+    <h1 class="text-5xl mb-4 text-center pt-10 text-black font-bold">Hyderabadi Food</h1>
+    <div class="container mx-auto p-16">
+        <!-- First row-->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!--  1st col -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Hyderabadi Biriyani</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/1024px-Hyderabadi_Chicken_Biryani">
+                    
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place11-details')">
+                        Restaurants
+                    </button>
+                    
+                </div>
+                <div id="place11-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Biriyani</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://b.zmtcdn.com/data/pictures/3/92693/254bf4c16626ecf25528269d8394f84c.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://qph.cf2.quoracdn.net/main-qimg-70a61007c113675d8bf97ea61af594f3.webp" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+        
+                    <p class="text-gray-700 font-bold">
+                        1. Hotel Shadab, Ghansi Bazaar<br />
+                        2. Meridian Cafe & Restaurant, Punjagutta <br>
+                        3. Shah Ghouse Cafe & Restaurant, Toli Chowki<br>
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2nd col -->
+            <div class="bg-white p-4 bg-white hover:bg-gray-300 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Hyderabadi Haleem</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/Hyderabadi-Haleem-is-ready.jpg"/>
+
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place12-details')">
+                        Restaurants
+                    </button>
+                    
+                </div>
+                <div id="place12-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Haleem</h2>
+                    <div class="flex flex-wrap">
+    
+                        <img src="https://content.jdmagicbox.com/comp/hyderabad/m1/040pxx40.xx40.000212279377.l7m1/catalogue/paradise-food-court-paradise-hyderabad-multicuisine-restaurants-1x9pw7r-250.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cdn.siasat.com/wp-content/uploads/2022/11/photo_2022-11-25_16-20-06-1024x768.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+        
+                    <p class="text-gray-700 font-bold">
+                        1. Pista House, Shalibanda Road, Charminar<br />
+                        2. Shah Ghouse Cafe & Restaurant, Toli Chowki<br>
+                        3. Paradise, Paradise Circle, Secunderabad
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3rd col -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                
+                <h2 class="text-xl font-bold mb-2">Double ka Meetha</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/double-ka-meetha-recipe.jpg"  />
+                    
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place13-details')">
+                        Restaurants
+                    </button>
+                    
+                </div>
+                <div id="place13-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Double ka Meetha</h2>
+                    <div class="flex flex-wrap">
+                        
+                        <img src="https://content.jdmagicbox.com/comp/hyderabad/y1/040pxx40.xx40.180514140123.y2y1/catalogue/hyderabad-house-ameerpet-hyderabad-restaurants-n2twxwu9z9.jpg" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://cdn-media.cure.fit/image/diy/6eadf18d-f146-474f-aa7c-0404abe2abe5" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    
+                    <p class="text-gray-700 font-bold">
+                        1. Hyderabad House, Ameerpet<br>
+                       2. Pragati Gully<br>
+                       3. Hameedi Confectioners, Mozamjahi Market
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+
+        <!-- second row-->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!--  1st col  -->
+            <div class="bg-white  bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Irani Chai</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/irani-tea.jpg" />
+                    
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place21-details')">
+                        Restaurants
+                    </button>
+    
+                </div>
+                <div id="place21-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Irani Chai</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://b.zmtcdn.com/data/pictures/chains/5/18241275/2814816309e747089e254286c0dda5b8.jpg?fit=around|960:500&crop=960:500;*,*" alt="Icon" class="w-40 h-40 m-2"  />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSO7WJekSU-9CqkXUQM2mmkj0VTd--TliZ8DG-NX_PbCNrENtZwIfcsHYWu2CXI3QZvnw&usqp=CAU" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                
+                    <p class="text-gray-700 font-bold">
+                        1. Nimrah Cafe & Bakery, Champapet Main Road<br />
+                        2. Nilofer Cafe, Lakdikapul <br>
+                        3. Paradise, Paradise Road, Secunderabad <br>
+                      
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2nd col -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                
+                <h2 class="text-xl font-bold mb-2">Paaya</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/images/cmsuploads/compressed/800px-Gosht_Paya_Nihari_20190421132654.jpg" />
+            
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place22-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place22-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Paaya</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://www.ohris.com/gallery/sahibs/ambiance/ambiance-big-1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://s3.ap-south-1.amazonaws.com/shopnowchat.com/Medium/MPRMjaYQIfyqO_AatukalPayaGravy.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Hotel Shadab<br />
+                        2. Shah Ghouse Café and Restaurant <br>
+                        3. Sahib's Barbeque by Ohri’s
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3rd col -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                  
+                <h2 class="text-xl font-bold mb-2">Chaat</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://assets.traveltriangle.com/blog/wp-content/uploads/2016/09/Untitled-design-72.jpg" />
+                </p>
+                <div class="flex flex-wrap">
+                </a>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place23-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place23-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Chaat</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://hungryforever.net/wp-content/uploads/2015/06/3927360423_2a6c95fb68_o.jpg" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://curlytales.com/wp-content/uploads/2020/06/gokul-chat-narayanguda-hyderabad-street-food-restaurants-b4zk4-2.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    
+                    <p class="text-gray-700 font-bold">
+                        1. Gokul Chaat, Koti<br />
+                        2. Maharaja Chaat, Madhapur <br>
+                        3. Bikanerwala,Banjara Hills <br>
+
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+
+        <!-- Third row-->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!--  1st col  -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Idly & Dosa</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://assets.traveltriangle.com/blog/wp-content/uploads/2016/09/Untitled-design-51.jpg"/>
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place31-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place31-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Idly & Dosa</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://assets.traveltriangle.com/blog/wp-content/uploads/2016/09/Untitled-design-184.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://b.zmtcdn.com/data/pictures/3/20620673/c37b7c642defc6c308bb92bb2c4b764d.png" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Lakshman Ki Bandi, Begum Bazaar<br />
+                        2. Ram ki Bandi, Nampally
+                        <br />
+                        3.  Govind’s Bandi, Gulzar Hauz
+                        <br />
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div></a>
+            </div>
+
+            <!-- 2nd col -->
+            <div class="bg-white p-4 bg-white hover:bg-gray-300 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Kebabs</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.bakingo.com/blog/wp-content/uploads/2023/01/kebab.jpg" />
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place32-details')">
+                        Restaurants
+                    </button>
+
+                </div>
+                <div id="place32-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Kebabs</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipOo0gZDz_HSQJQZZkFxvtlhWWUgY8WByGfoQ8Q=s1360-w1360-h1020" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://im.indiatimes.in/media/content/2016/Jul/paradise%20hyderabad_1468412167.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Siddique Kabab Centre,Hyderabad<br />
+                        2. Kebab Theatre,Durgam Cheruvu<br>
+                        3. Bade Miyan Kababs,Kavadiguda 
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3rd col -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Mirchi Ka Salan</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/mirchi-ka-salan-final.jpg" />
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place33-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place33-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Mirchi Ka Salan</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdkrwr6A47R_ezSdBp2iOnVO8LFOWsOcOu0w&usqp=CAU" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT56btZ0yz-l4cjJh_QpIq89GOyMpI2tgZQeA&usqp=CAU" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Hotel Rumaan Restaurant, Toli Chowki <br>
+                        2. Hotel Nayaab, Ghansi Bazaar <br>
+                        3. Hotel Shadab, Ghansi Bazaar
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <!-- Fourth row-->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!--  1st col  -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Phirni</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://www.whiskaffair.com/wp-content/uploads/2016/03/Thandai-Phirni-2-3.jpg"/>
+                    
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place41-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place41-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Phirni</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://www.holidify.com/blog/wp-content/uploads/2016/08/phirni.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://b.zmtcdn.com/data/pictures/3/18313013/30a1efd0c63389014fc49e4e43f296e4.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    
+                    <p class="text-gray-700 font-bold">
+                        1. Shah Ghouse Cafe & Restaurant, Toli Chowki<br />
+                        2. The Grand Trunk Road, Madhapur<br>
+                        3. Ohri’s Mehfill,Secunderabad
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2nd col -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Mulberry Malai</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://img.atlasobscura.com/D5YQgyGdWeWf8gE509SXGc82BhXU9dpO1IzXd__5LAE/rs:fill:580:580:1/g:ce/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3RoaW5n/X2ltYWdlcy9kNDU0/OGE2OC1kY2Y2LTRi/ZGItOWNkOC02NWY2/Y2U1OGQwYzIxOWRj/OTQ3YmQyZTE3N2Ni/YzZfbXVsYmVycnkg/Y3JlYW0gYm93bC5q/cGc.jpg"/>
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place42-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place42-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Mulberry Malai</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://lh3.googleusercontent.com/J6K1m0vPqcD1NccEFZFoAQ_t7x1gK0ooYeQbQC-U72_STNDfR4kqRq8ZLweKPQXUKtxRamkyJk-3xzLI_Uh15Cf6Sw8=w512-rw" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://www.localguidesconnect.com/t5/image/serverpage/image-id/1176529iC79267E0256530E1/image-dimensions/2500?v=v2&px=-1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Milan Juice Center, Charminar<br>
+                        2. Masqati True Juice<br>
+                        3. Malai store,Mansoorabad
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3rd col -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <h2 class="text-xl font-bold mb-2">Shawarma</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://lh3.googleusercontent.com/p0zWSqk6B8aDg9u1ko3S1a3_H3aOrGSeg0UFV7czj7QIsGHFuV_IzyAm9_59tyEU127PL2n-7tIQJMEGW2y-e7MmWjFRKLDdyt3mDws=w900-rw"/>
+                    
+                </p>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place43-details')">
+                        Restaurants
+                    </button>
+                </div>
+                <div id="place43-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Top Places To Try Shawarma</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://content.jdmagicbox.com/comp/hyderabad/q4/040pxx40.xx40.180828091442.t9q4/catalogue/al-hashmi-arabian-shawarma-and-fast-food-azizguda-hyderabad-shawarma-centres-pjuucl68mt.jpg?clr=" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://www.licious.in/blog/wp-content/uploads/2022/06/shutterstock_1339636625-1.jpg" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700 font-bold">
+                        1. Chicken Shawarma Hub, Madhapur<br />
+                        2. Al Hashmi Arabian Shawarma House,Charminar<br>
+                        3. Pista House, Nizampet
+
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(detailsId) {
+            const detailsElement = document.getElementById(detailsId);
+            const expandedContainer = document.createElement("div");
+            expandedContainer.classList.add("expanded-container");
+
+            const blurredBackground = document.createElement("div");
+            blurredBackground.classList.add("blurred-background");
+
+            const backToHome = () => {
+                window.location.replace(window.location.href.split("#")[0]);
+            };
+
+            const closeExpandedContainer = () => {
+                expandedContainer.classList.add("animate__fadeOut");
+                blurredBackground.classList.add("animate__fadeOut");
+                setTimeout(() => {
+                    expandedContainer.remove();
+                    blurredBackground.remove();
+                }, 300);
+            };
+
+            expandedContainer.addEventListener("click", closeExpandedContainer);
+            expandedContainer.innerHTML = detailsElement.innerHTML;
+
+            document.body.appendChild(blurredBackground);
+            document.body.appendChild(expandedContainer);
+        }
+    </script>
+       <footer class="bg-blue-400 p-4 text-white text-center">
+        &copy; 2023 Hyderabad Landing Page. <br>Team Web Wizard All rights reserved.
+      </footer>
+</body>
+
+</html>

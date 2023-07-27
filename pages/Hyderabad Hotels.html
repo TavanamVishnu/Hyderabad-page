@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyderabad Hotels</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+.navbar .navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+.navbar .menu {
+  display: flex;
+  gap: 1rem;
+}
+.navbar .menu a {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.navbar .menu a:hover {
+  background-color: #f2f2f2;
+}
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+.dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 160px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.dropdown-menu a:hover {
+  background-color: #f2f2f2;
+}
+
+.navbar .menu .dropdown {
+  margin-left: auto;
+}
+@media screen and (max-width: 640px) {
+  .navbar .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navbar .menu {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar .menu a {
+    padding: 0.75rem 1rem;
+  }
+  .navbar .menu .dropdown {
+    margin: 0;
+  }
+}
+        body {
+            background-image: url("https://images.unsplash.com/photo-1518014179319-21e9e8139b05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBsYWluJTIwY29sb3VyfGVufDB8fDB8fHww&w=1000&q=80");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .expanded-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            animation: fadeInExpand 0.3s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInExpand {
+            from {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .custom-shadow {
+            --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+        footer {
+    padding: 20px;
+    text-align: center;
+  }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+          <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQprgBlD9lER_3pVbqxQSOa_SnZGVBgeq9Nr6sI37AaFFLA8uNuIlZ2PxIuC6JA1buuLf0&usqp=CAU" alt="Charminar">
+            <span class="text-2xl whitespace-nowrap dark:text-white" style="font-family: 'Times New Roman', Times, serif;font-style: italic; font-weight: 700; font: size 42px;">Hyderabad</span>
+          </div>
+          <div class="menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+              <a href="#">Explore</a>
+              <div class="dropdown-menu">
+                <a href="pages/Places to Visit/places.html">Explore Places</a>
+                <a href="#">Food Delights</a>
+                <a href="#">Accommodation</a>
+                <a href="#">Ideal Seasons</a>
+                <a href="#">Local Events</a>
+              </div>
+            </div>
+            <a href="pages/blog/blog.html">Blog</a>
+            <div class="dropdown">
+              <a href="#">About</a>
+              <div class="dropdown-menu">
+                <a href="pages/about/history.html">History</a>
+                <a href="pages/about/culture.html">Culture</a>
+              </div>
+            </div>
+            
+            <a href="pages/about/gallery.html">Gallery</a>
+            
+          </div>
+        </div>
+      </div>
+      <br><br><br>
+    <h1 class="text-5xl mb-4 text-center pt-10 text-black">Hotels in Hyderabad</h1>
+    <div class="container mx-auto p-16">
+        <!-- ********************************ROW-1***************************************** -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Place Card 1 -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/trident-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Trident Hyderabad</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/270x200/22148091.webp?k=cadaf2800d8226b8e1e6f8b57a93a7f927f8d9ca4da9eff85aa5213f25a5eff7&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Trident Hyderaba,High Tech City, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place11-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Trident+Hotel+Hyderabad/@17.4491171,78.3760983,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb93dea35ca91d:0x6c8b3230bf6c5252!5m2!4m1!1i2!8m2!3d17.4491171!4d78.3786732!16s%2Fg%2F1ts_5173?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place11-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Trident Hyderabad</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://www.google.co.in/maps/place/Trident+Hotel+Hyderabad/@17.4491171,78.3760983,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb93dea35ca91d:0x6c8b3230bf6c5252!5m2!4m1!1i2!8m2!3d17.4491171!4d78.3786732!16s%2Fg%2F1ts_5173?entry=ttu" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/22148398.jpg?k=c6918fa51d1cb4f111362fda1bcec7b4f71db3688dedd907955bd94ced6e4af8&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/22149610.jpg?k=18cdafa144d6fda4b3c02981263b57ffc7d64852ab959efa13aaa733cce608ae&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Featuring an outdoor swimming pool, spa and wellness centre and fitness centre, Trident,
+                        Hyderabad is close to Raheja Mindspace IT Park. It has a well-equipped business centre and
+                        meeting space. Free parking facility is available. Complimentary WiFi is available in all
+                        rooms.<br><br>
+                        Featuring modern décor, the air-conditioned rooms come with a desk, tea/coffee maker and
+                        flat-screen satellite TV. The en suite bathrooms have shower and toiletries.<br><br> Amazingly
+                        friendly and professional staff. Excellent property. Good Food & buffet breakfast. Club house
+                        facility on the 21st floor is a must visit and value for money is you opt for the room with
+                        complementary access. Efficient Airport drop off with very friendly diver.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 2 -->
+            <div class="bg-white p-4 bg-white hover:bg-gray-300 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/taj-falaknuma-palace.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Taj Falaknama Palace</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/17181467.jpg?k=73b25a9cb3b5e18877cf578c8d146a1ba4ff213a6bf3801f4480a0337bac1b1f&o=&hp=1" alt="Icon" class="w-20 h-20 m-2" />
+                    Taj Falaknama Palace,Engine Bowli,Falaknama, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place12-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Taj+Falaknuma+Palace/@17.3314792,78.4648898,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcbbd5654172a41:0xd3dbb0c22420002e!5m2!4m1!1i2!8m2!3d17.3314792!4d78.4674647!16s%2Fm%2F0277x86?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place12-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Taj Falaknama Palace</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/17181480.jpg?k=8bfc458b703e4447e12f6470f32356ff04208f9aa902dbecb9cfaf708697d30e&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/17181561.jpg?k=a07c6455022ddf18bc658d687c656a60cb141d152d883ade925986a30dc0cff3&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/139528109.jpg?k=f28daddd35d132898ff46b627e1aa3fa115ed318d09fc3557166f40e0defbde7&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Elevated 2000 feet above Hyderabad, this luxurious 5-star property features a blend of colonial
+                        and Indian designs. It houses a heritage walk with beautifully crafted objects from the world
+                        over and a first-rate spa. Staff and property were excellent
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Safety Deposit Box <br>
+                        - 24 hours service
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 3 -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/bedchambers-luxury-apartments-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Bed Chambers Luxury Apartments</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/270x200/467254653.webp?k=d9c55df4a21b3a7bfec8bc5992f6287987f974317aff4ec65e49dea64f65777b&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Bed Chambers Luxury Apartments,Krishna Patnam, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place13-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.com/maps/search/Peddamma+Talli+Temple,+Road+55,+CBI+Colony,+Jubilee+Hills,+Hyderabad/@17.4306162,78.4054799,17z/data=!3m1!4b1?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place13-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Bed Chambers Luxury Apartments</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/467236127.jpg?k=103058199b1462e3fd51fbdae639cfb2cc43a868326111eeea6eaaca17a41652&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/467233048.jpg?k=8e3ca5910b56aaf5b4137f754cf69bd49e8967e9c645e0ae73d6e2bf2f8c7580&o=&hp=1" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/467233048.jpg?k=8e3ca5910b56aaf5b4137f754cf69bd49e8967e9c645e0ae73d6e2bf2f8c7580&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Located in Hyderabad, 5.6 km from City Centre Mall and 6 km from Golkonda Fort, BedChambers
+                        Luxury Apartments, Hyderabad provides city views and free WiFi.<br><br>
+
+                        Ravindra Bharathi is 9 km from the apartment, while AP State Archaeology Museum is 10 km away.
+                        The nearest airport is Rajiv Gandhi International Airport, 31 km from BedChambers Luxury
+                        Apartments, Hyderabad.<br><br> Excellent apartments in Hyderabad. The apartment is on the top of decent
+                        sized. we love the ambience, the comfort the location and proximity . The property is excellent
+                        condition. very welcoming
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        -Free WiFi<br>
+                        -Free Parking
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+
+        <!-- ********************************ROW-2***************************************** -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Place Card 1 -->
+            <div class="bg-white  bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/itc-kohenur-a-luxury-collection-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">ITC Kohenur,a Luxury Collection Hotel</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/270x200/467656825.webp?k=fdf5e4911c7292277e14e3026a0e45dd881c9e59570542e86a4307d831b4f640&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    ITC Kohenur,HiTech City, Hyderabad, Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place21-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/ITC+Kohenur,+a+Luxury+Collection+Hotel,+Hyderabad/@17.4322884,78.3802244,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb9388a09a79f5:0x9ff99841b5ec9e9c!5m2!4m1!1i2!8m2!3d17.4322885!4d78.3850953!16s%2Fg%2F11gfjs8sbn?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place21-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">ITC Kohenur,a Luxury Collection Hotel</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/469205947.jpg?k=3865b1a7d9e7bfa568b583b4da900769ea4cdf2f22e849c5e0ced07507ece201&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/469205874.jpg?k=310a3f9191419844d62eeb2ff4209ba23d2b10cc3001bd03d992962e695a89be&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/469205991.jpg?k=12738b6a570fe92600c0de93a2f2d7053de4a18289c6a01fb5d8af8e384390d5&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Featuring a fitness centre, bar and views of lake, ITC Kohenur, a Luxury Collection Hotel, Hyderabad is situated in Hyderabad, 7 km from ISB. Boasting a 24-hour front desk, this property also welcomes guests with restaurants and an outdoor pool. The accommodation features room service, a concierge service and currency exchange for guests.<br><br> The hotel is nice and clean good location and very good staff, very hospitality accomodating from the guards, receptionist and the house keeping all are very nice and respectfull. specially the lady receptionist her name is Baby. yes so nice and very helpfull. a highly recomended property thank you.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 2 -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/hyatt-place-hyderabad-banjara-hills.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Hyatt Palace</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/270x200/244302177.webp?k=4b8487e22c59a023ed0ab0493c5f37bd69d61bf5bd702038e0f777678652f355&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Hyatt Palace,Banjara Hills, Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place22-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Hyatt+Place+Hyderabad+Banjara+Hills/@17.4192196,78.4425961,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb9736a53fd815:0x6599eec1b01d3881!5m2!4m1!1i2!8m2!3d17.4192197!4d78.447467!16s%2Fg%2F11f324417n?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place22-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Hyatt Palace</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/239071721.jpg?k=f3277310ce8ed004fd9a2f2488c55afd759257172f0c29bb9a8ede906a011e85&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/333142707.jpg?k=b93298be5b816b866f5d8778e3cc67bfc04b70e16a9c3cfcfc5be41dd4eb57d3&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/333142707.jpg?k=b93298be5b816b866f5d8778e3cc67bfc04b70e16a9c3cfcfc5be41dd4eb57d3&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Hyatt Place Hyderabad Banjara Hills features a restaurant, outdoor pool, fitness centre, a bar and shared lounge in Hyderabad. Featuring family rooms, this property also provides guests with a terrace. The accommodation offers a 24-hour front desk, room service and currency exchange for guests.
+
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 3 -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/vivanta-by-taj-begumpet.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">  
+                <h2 class="text-xl font-bold mb-2">Vivanta Hotel</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/43310573.jpg?k=93ec9e816da66c93a336d9ba91cccbbc602e3abf187c06cceeb6bf1f3b334923&o=&hp=1" alt="Icon" class="w-20 h-20 m-2" />
+                    Vivanta ,Begumpet, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                </a>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place23-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.com/maps/place/Falaknuma+Palace,+Fatima+Nagar,+Falaknuma,+Hyderabad,+Telangana+500053/@17.3309549,78.4626331,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcbbd5658448db3:0xa4b0570b55c170bb!8m2!3d17.330955!4d78.467504!16s%2Fg%2F1q67pzt86?hl=en&entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place23-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Vivanta Hotel</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/43310573.jpg?k=93ec9e816da66c93a336d9ba91cccbbc602e3abf187c06cceeb6bf1f3b334923&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/43313085.jpg?k=da1187c3b722f67d2a42262f3601b9a0ea94850b0ecc71004b806c36af948240&o=&hp=1" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/43201859.jpg?k=48a346d7b10cc8ab2c891225031562a8aba172fc8730e02aff09e8cfe0a7580e&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        The modern air-conditioned rooms at Vivanta Hyderabad, Begumpet are equipped with a flat-screen TV, minibar and personal safe. Rooms enjoy views of the pool or city. En suite bathrooms come with a shower.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+
+        <!-- ********************************ROW-3***************************************** -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Place Card 1 -->
+            <div class="bg-white bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/gsr-grand-luxury-rooms.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">GSR Grand</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/403192187.jpg?k=d75aca2128e15a2145c83010abb0c0ef2a1f9e3bf6c807b2a2692e98cbe1ec30&o=&hp=1" alt="Icon" class="w-20 h-20 m-2" />
+                    GSR Grand,High Tech City, Hyderabad,
+                    Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place31-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/GSR+Grand/@17.4519779,78.3867309,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb91862f5e01f7:0x74cbb39fed156818!5m2!4m1!1i2!8m2!3d17.4519779!4d78.3893058!16s%2Fg%2F11jslqwywg?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place31-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">GSR Grand</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/403542383.jpg?k=75068bcfaa4b8a88aa0e6280c0c86af738075e911ba062a571d7b8a3cbdff340&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/403193306.jpg?k=d8f526903e235cf13a45aa6d39c5961b6a00c95c1d4075012cf3736520f2f2e8&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/403542528.jpg?k=c372dd2d0d79ae0a708541a46002784a5cd3bf8886515e117f1b0deb2f895567&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Offering air-conditioned rooms in the HITEC City district of Hyderabad, GSR Grand Luxury Rooms is 8 km from ISB. This 3-star hotel offers room service and a 24-hour front desk. Hussain Sagar Lake is 13 km away and Ravindra Bharathi is 13 km from the hotel.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Family Room<br />
+                        - Free Parking
+                        <br />
+                        - Room Service
+                        <br />
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div></a>
+            </div>
+
+            <!-- Place Card 2 -->
+            <div class="bg-white p-4 bg-white hover:bg-gray-300 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/le-meridien-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Le Meridien</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/square600/465563044.webp?k=00d5bab9ff345d3e342b8b262a81408e95c696416c89542bcca28f531b2c7523&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Le Meredien,HiTech City, Hyderabad,
+                    Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place32-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Le+Meridien+Hyderabad/@17.4495115,78.3608764,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb938316ecf0f5:0xa06d76f97e0c2b05!5m2!4m1!1i2!8m2!3d17.4495115!4d78.3634513!16s%2Fg%2F11fl40rhr_?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place32-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Le Meridian</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/472026750.jpg?k=e6404bcb05efa4b459cc4ea7f21e6b0a812e87798c0f74bd1b316350731b283c&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/477549524.jpg?k=40b862c4e9dc1f9a35f507b56f3db0394fd5ac924b13fc682675ed9627b1552f&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/465563069.jpg?k=a3c1fb4d81d0bd4b6ae0dcd0ce10b1df3dad6d0b74a45d281ff4e28ce69cf27b&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Set in Gachibowli, Le Méridien Hyderabad offers accommodation with a restaurant, free private parking, an outdoor swimming pool and a bar. Each accommodation at the 5-star hotel has city views, and guests can enjoy access to a shared lounge and to a terrace. The accommodation provides a 24-hour front desk, airport transfers, tours, room service and free WiFi is available in public areas.<br><br> Very close to Malls and everything
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant<br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 3 -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/marriott-executive-apartments-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Marriot Executive Apartments</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/465541002.jpg?k=7238b2d7c949993e5351f6f56aff434a4347b80190c3c3439dea1f9e568332e0&o=&hp=1" alt="Icon" class="w-20 h-20 m-2" />
+                    High Tech City, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place33-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Marriott+Executive+Apartments+Hyderabad/@17.4523613,78.3604035,17z/data=!3m2!4b1!5s0x3bb4ce91c86024f7:0x55fb65d4617f71a!4m9!3m8!1s0x3bcb93c7727e0709:0x9cfc2532b84043a5!5m2!4m1!1i2!8m2!3d17.4523613!4d78.3629784!16s%2Fg%2F11f13r7_tf?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place33-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Marriot Executive Apartments</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/465541002.jpg?k=7238b2d7c949993e5351f6f56aff434a4347b80190c3c3439dea1f9e568332e0&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/463621326.jpg?k=cd14ccde0df07ffd1f28a718c44a9b56ada7f30a108fd27e264147e54eb0d7c3&o=&hp=1" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/463621313.jpg?k=c9eb861dc8064dee54a2e66359f56af0fa1b4c4239bf83bb728a75fd01609b4d&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Situated in Hyderabad, Marriott Executive Apartments Hyderabad offers 5-star accommodation with a garden, a terrace and a shared lounge. Conveniently located in the Gachibowli district, this hotel is located 1.1 km from HITECH CITY. Local points of interest like ISB and Golkonda Fort are reachable within 3 km and 9 km, respectively. Free WiFi is available is public areas.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - 2 Swimming Poolss
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <!-- ********************************ROW-4***************************************** -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Place Card 1 -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/sheraton-hyderabad.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb">
+                <h2 class="text-xl font-bold mb-2">Sheraton Hotel</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/270x200/467527571.webp?k=7d46adb9128af0b2667c479ae4d6cbb61ea11c0401b5758c72722979eabdb766&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Naranamguda, Gachibowli, Hyderabad, Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place41-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Sheraton+Hyderabad+Hotel/@17.4218786,78.3346995,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb93802a2b9f33:0x5ea1c82bfa676769!5m2!4m1!1i2!8m2!3d17.4218786!4d78.3372744!16s%2Fg%2F11bc96xb_f?entry=ttu">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place41-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Sheraton Hotel</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/469188589.jpg?k=7fad3b4c76df755f646aae9b3d25bc2f7aaad8f02e9f5a710e49a647d1862489&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/469188605.jpg?k=4a26f822d560271ba9022463568b08bc08c9c7be81bff8e420f8f2519251268c&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/469188650.jpg?k=5131fb68786ed259969718c897cfaa3f990b4b941d27b887bc69e239c457df7a&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Offering an outdoor swimming pool, fitness centre and a spa centre, Sheraton Hyderabad Hotel is set in Hyderabad in the Telangana Region. Guests can enjoy 2 dining options and a bar.<br><br>
+
+                        The rooms have a flat-screen satellite TV and a seating area for your convenience. Rooms include a private bathroom fitted with a bath or shower.<br><br> Clean, comfortable, fantastic food. Special thanks to Chef Shiv-Rawat and all the staff for their kindness and hospitality.
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 2 -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/novotel-hyderabad-convention-center.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb&dest_id=-2097701;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=5;hpos=5;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1690356557;srpvid=5eb234a614b0000a;type=total;ucfs=1&#hotelTmpl">
+                <h2 class="text-xl font-bold mb-2">Novotel Convection Centre</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/square600/252001737.webp?k=2b77c0d6f7c9d10fa0a5e4c952efed73b72f0ffb4f02425e1d1e538c885e14df&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    Novotel Convection Centre,HighTech City, Hyderabad,
+                    Telangana
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place42-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.google.co.in/maps/place/Novotel+Hyderabad+Convention+Centre/@17.4727469,78.371338,17z/data=!3m1!4b1!4m9!3m8!1s0x3bcb92320a27f5a9:0xf7ffe9c0885c159b!5m2!4m1!1i2!8m2!3d17.4727469!4d78.3739129!16s%2Fg%2F1ptx3wcz2?entry=ttup">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place42-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">Novotel Convection Centre</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/189114909.jpg?k=868818984678aad16a97b86a161f0226c10e7b1240bfa7939f537d4722d3d7f3&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/252001751.jpg?k=483fa241e3b3480d95530be98f9c091fcca7025502647621dfd79bf1c229f775&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/197207397.jpg?k=82235f999dc992424fc33e14d3c70d41c63d029960e7d1839ffc6690ab315bf0&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Located in the business hub of Hyderabad, HITEC City, this 5-star hotel is connected to Hyderabad International Convention Centre. The hotel is at a 45-minute drive from Rajiv Gandhi International Airport and shares a close proximity to corporates & IT Parks like Cyber Tower (2.2 km), Mindspace (3.9 km), Google (3.7 km), Gachibowli (5 km), IBM (6.5 km), Accenture (8 km) and Microsoft (8 km).<br><br>
+
+The hotel comprises of newly renovated 288 well-appointed rooms & suites, elegantly decorated with modern-day amenities like satellite TV, a minibar, and tea/coffee making facilities. The rooms offer views of the pool, vast green spaces and city skyline.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+            <!-- Place Card 3 -->
+            <div class="bg-white hover:bg-gray-300 p-4 rounded-lg custom-shadow transform hover:scale-105 transition-transform">
+                <a href="https://www.booking.com/hotel/in/the-westin-hyderabad-mindspace.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb&dest_id=-2097701;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;hpos=1;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;srepoch=1690356557;srpvid=5eb234a614b0000a;type=total;ucfs=1&#hotelTmpl" class="bg-gray-200 ">
+                <h2 class="text-xl font-bold mb-2">The Westin Mindspace</h2>
+                <p class="text-gray-600 mb-4">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/square600/433320265.webp?k=814afe596dfd140936a2fc855bc635dfb292effc93d5a3ae5ebdb4b186989140&o=" alt="Icon" class="w-20 h-20 m-2" />
+                    The Westin Mindspace, HIGHTEC City, Hyderabad
+                </p></a>
+                <div class="flex flex-wrap">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="toggleDetails('place43-details')">
+                        Show Details
+                    </button>
+                    <a
+                        href="https://www.booking.com/hotel/in/novotel-hyderabad-convention-center.en-gb.html?aid=375816&label=city-hyderabad-7jU4Acj_HCIlhliNDIbTPAS538263914600%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-146342138710%3Akwd-298481071600%3Alp1007740%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YboIMJYQAPicNVDGWXPgwtU&sid=b1784a3e601ce793842aff7758a33cfb&dest_id=-2097701&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1690358056&srpvid=41493793fa5106d3&type=total&ucfs=1&activeTab=main#map_opened-hotel_sidebar_static_map">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8HzQeUVDZWGLKtucLvK_8NXRPsLaVAdKFLw&usqp=CAU" alt="Dmap" class="w-10 h-10 ml-10" />
+                    </a>
+                </div>
+                <div id="place43-details" class="hidden mt-4">
+                    <h2 class="text-xl font-bold mb-2">The Westin Mindspace</h2>
+                    <div class="flex flex-wrap">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/433320411.jpg?k=9199fd7cead38502fd878a7900704d6a379c4b7fe96ee622f240d78d16bfa556&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/433320387.jpg?k=832ed1a6bc76a3e61673aeff2961462f518f757562a00ebd3f0f542904a86d58&o=&hp=1" alt="Icon" class="w-45 h-40 m-2" />
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/440901714.jpg?k=99cc46dfbd45e947a0a7e93a10f4c6abd860178435bab87c204b1325b29f79c2&o=&hp=1" alt="Icon" class="w-40 h-40 m-2" />
+                    </div>
+                    <p class="text-gray-700">
+                        Situated in the heart of Raheja Mindspace IT Park, The Westin Hyderabad offers luxurious rooms equipped with 37-inch plasma TV with DVD player. Featuring a 24-hour business centre, the hotel has an outdoor pool, a fitness centre, pampering spa treatments and 6 unique food and beverage restaurants. Complimentary WiFi is available in all rooms.<br><br>
+                        The hotel provides easy access to technological corporations and Hyderabad International Convention Centre. Shilparamam Arts village is 3 km away. It is 14 km to Golconda Fort, 20 km to Hussain Sagar Lake and 2 km to IKEA. Hyderabad International Airport is 35.6 km away and Nampally Railway Station is 14.6 km from The Westin.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        - Outdoor swimming pool<br />
+                        - Restaurant and Bar <br>
+                        - Fitness center <br>
+                        - Spa & Wellness Center
+
+                    </p>
+                    <br />
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        onclick="backToHome()">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(detailsId) {
+            const detailsElement = document.getElementById(detailsId);
+            const expandedContainer = document.createElement("div");
+            expandedContainer.classList.add("expanded-container");
+
+            const blurredBackground = document.createElement("div");
+            blurredBackground.classList.add("blurred-background");
+
+            const backToHome = () => {
+                window.location.replace(window.location.href.split("#")[0]);
+            };
+
+            const closeExpandedContainer = () => {
+                expandedContainer.classList.add("animate__fadeOut");
+                blurredBackground.classList.add("animate__fadeOut");
+                setTimeout(() => {
+                    expandedContainer.remove();
+                    blurredBackground.remove();
+                }, 300);
+            };
+
+            expandedContainer.addEventListener("click", closeExpandedContainer);
+            expandedContainer.innerHTML = detailsElement.innerHTML;
+
+            document.body.appendChild(blurredBackground);
+            document.body.appendChild(expandedContainer);
+        }
+    </script>
+        <footer class="bg-blue-400 p-4 text-white text-center">
+            &copy; 2023 Hyderabad Landing Page. <br>Team Web Wizard All rights reserved.
+          </footer>
+</body>
+
+</html>
