@@ -128,8 +128,7 @@ img{
 }
 
 
-.foot{
-background: rgb(0,81,255);
-text-align: center;
-  color: white;
+footer {
+  padding: 20px;
+  text-align: center;
 }
